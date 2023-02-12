@@ -17,5 +17,8 @@
 		<div class="px-4">
 			<slot />
 		</div>
+		<footer class="p-4">
+			A demo by Zack Webster
+		</footer>
 	</body>
 </html>

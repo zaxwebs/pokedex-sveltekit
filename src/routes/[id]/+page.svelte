@@ -1,8 +1,41 @@
 <script>
 	export let data;
+	import { formatName, gramsToKilos, convertHeight } from "../../helpers/base";
+
+	const calculateStatPerecnt = (stat) => {
+		return stat/180*100
+	}
 </script>
 
 <div>
 	<img src={data.monster.image} alt={data.monster.name} />
 	<h1 class="font-semibold">{data.monster.name}</h1>
+	<div class="flex flex-row gap-4">
+		{#each data.monster.types as typeObj}
+			<div>{formatName(typeObj.type.name)}</div>
+		{/each}
+	</div>
+	<div>
+		<h4 class="font-medium">Height</h4>
+		<span>{convertHeight(data.monster.height)} m</span>
+	</div>
+	<div>
+		<h4 class="font-medium">Weight</h4>
+		<span>{gramsToKilos(data.monster.weight)} kg</span>
+	</div>
+	<div class="max-w-lg">
+		<h2 class="font-semibold">Stats</h2>
+		{#each data.monster.stats as statObj}
+		<div class="flex gap-4">
+			<h3 class="font-medium flex-1">{statObj.stat.name}</h3>
+			<div class="flex-1 flex flex-row items-center gap-4">
+				<div style="flex: 0.2;">{statObj.base_stat}</div>
+				<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 flex-1">
+					<div class="bg-blue-600 h-2.5 rounded-full" style="width: {calculateStatPerecnt(statObj.base_stat)}%"></div>
+				</div>
+			</div>
+		</div>
+			
+		{/each}
+	</div>
 </div>

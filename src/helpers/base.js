@@ -8,3 +8,9 @@ export const formatName = (name) => {
 		return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 	})
 }
+
+export const gramsToKilos = grams => {
+	return grams/10; 
+}
+
+export const convertHeight = height => height/10

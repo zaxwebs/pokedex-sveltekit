@@ -1,0 +1,1 @@
+<p>A demo Pokedex app built with Svelte & SvelteKit.</p>
