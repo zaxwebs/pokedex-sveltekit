@@ -10,7 +10,7 @@
 		<title>Pokedex</title>
 	</head>
 	<body>
-		<nav>
+		<nav class="flex flex-row gap-4 p-4">
 			<a href="/">Home</a>
 			<a href="/about">About</a>
 		</nav>
