@@ -5,6 +5,13 @@
 	const calculateStatPerecnt = (stat) => {
 		return stat/180*100
 	}
+
+	const getStatColor = percent => {
+		if(percent < 25) return 'bg-amber-500'
+		if(percent < 50) return 'bg-green-500'
+		if(percent < 75) return 'bg-teal-500'
+		return 'bg-cyan-500'
+	}
 </script>
 
 <div>
@@ -31,7 +38,7 @@
 			<div class="flex-1 flex flex-row items-center gap-4">
 				<div style="flex: 0.2;">{statObj.base_stat}</div>
 				<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 flex-1">
-					<div class="bg-blue-600 h-2.5 rounded-full" style="width: {calculateStatPerecnt(statObj.base_stat)}%"></div>
+					<div class="{getStatColor(calculateStatPerecnt(statObj.base_stat))} h-2.5 rounded-full" style="width: {calculateStatPerecnt(statObj.base_stat)}%"></div>
 				</div>
 			</div>
 		</div>
