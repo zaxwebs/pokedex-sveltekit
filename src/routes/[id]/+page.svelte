@@ -33,15 +33,21 @@
 			<h4 class="font-medium">Height</h4>
 			<span>{convertHeight(data.monster.height)} m</span>
 		</div>
-		<div>
+		<div class="text-right">
 			<h4 class="font-medium">Weight</h4>
 			<span>{gramsToKilos(data.monster.weight)} kg</span>
 		</div>
 	</div>
 
-	<div class="mb-4">
-		<h4 class="font-medium">Habitat</h4>
-		<div>{data.species.habitat.name}</div>
+	<div class="flex justify-between mb-4">
+		<div>
+			<h4 class="font-medium">Habitat</h4>
+			<div>{data.species.habitat.name}</div>
+		</div>
+		<div class="text-right">
+			<h4 class="font-medium">Number</h4>
+			<div>{data.monster.id}</div>
+		</div>
 	</div>
 
 	<div class="max-w-lg">
