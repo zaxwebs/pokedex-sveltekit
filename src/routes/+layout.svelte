@@ -9,16 +9,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Pokedex</title>
 	</head>
-	<body>
-		<nav class="flex flex-row gap-4 p-4">
-			<a href="/">Home</a>
-			<a href="/about">About</a>
-		</nav>
-		<div class="px-4">
-			<slot />
+	<body class="bg-slate-100">
+		<div class="max-w-md m-auto bg-white min-h-screen">
+			<nav class="flex flex-row gap-4 p-4">
+				<a href="/">Home</a>
+				<a href="/about">About</a>
+			</nav>
+			<div class="px-4">
+				<slot />
+			</div>
 		</div>
-		<footer class="p-4">
-			A demo by Zack Webster
-		</footer>
 	</body>
 </html>

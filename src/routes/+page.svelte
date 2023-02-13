@@ -2,7 +2,7 @@
 	export let data;
 </script>
 
-<div class="flex flex-wrap gap-4">
+<div class="grid grid-cols-3 gap-2">
 	{#each data.monsters as monster}
 		<article>
 			<div class="flex flex-col items-center ">
