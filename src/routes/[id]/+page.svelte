@@ -47,16 +47,14 @@
 	<div class="max-w-lg">
 		<h2 class="font-semibold">Stats</h2>
 		{#each data.monster.stats as statObj}
-			<div class="flex gap-4">
-				<h3 class="font-medium flex-1">{statObj.stat.name}</h3>
-				<div class="flex-1 flex flex-row items-center gap-4">
-					<div style="flex: 0.2;">{statObj.base_stat}</div>
-					<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 flex-1">
-						<div
-							class="{getStatColor(calculateStatPerecnt(statObj.base_stat))} h-2.5 rounded-full"
-							style="width: {calculateStatPerecnt(statObj.base_stat)}%"
-						/>
-					</div>
+			<div class="flex gap-4 items-center">
+				<h3 style="flex: 0.4;">{statObj.stat.name}</h3>
+				<div style="flex: 0.2;">{statObj.base_stat}</div>
+				<div class="w-full bg-gray-200 rounded-full h-2.5 flex-1">
+					<div
+						class="{getStatColor(calculateStatPerecnt(statObj.base_stat))} h-2.5 rounded-full"
+						style="width: {calculateStatPerecnt(statObj.base_stat)}%"
+					/>
 				</div>
 			</div>
 		{/each}
