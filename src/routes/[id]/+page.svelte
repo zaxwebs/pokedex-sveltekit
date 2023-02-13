@@ -17,11 +17,13 @@
 <div>
 	<img src={data.monster.image} alt={data.monster.name} />
 	<h1 class="font-semibold">{data.monster.name}</h1>
+	<div>{data.species.genus}</div>
 	<div class="flex flex-row gap-4">
 		{#each data.monster.types as typeObj}
 			<div>{formatName(typeObj.type.name)}</div>
 		{/each}
 	</div>
+	<p>{data.species.flavor_text}</p>
 	<div>
 		<h4 class="font-medium">Height</h4>
 		<span>{convertHeight(data.monster.height)} m</span>
@@ -42,7 +44,6 @@
 				</div>
 			</div>
 		</div>
-			
 		{/each}
 	</div>
 </div>

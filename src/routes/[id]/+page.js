@@ -4,7 +4,8 @@ export const load = async ({ fetch, params }) => {
 	const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
 	const json = await response.json();
 
-	console.log(json)
+	const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.id}`);
+	const speciesJson = await speciesResponse.json()
 
 	const formatStatName = (name) => {
 		const statMap = {
@@ -33,5 +34,17 @@ export const load = async ({ fetch, params }) => {
 		})
 	}
 
-	return { monster };
+	const species = {
+		...speciesJson,
+		genus: speciesJson.genera.filter(function(obj) {
+			return obj.language.name === "en";
+		  })[0].genus,
+		flavor_text: speciesJson.flavor_text_entries.filter(function(obj) {
+			return obj.language.name === "en";
+		  })[0].flavor_text.replace(/\f/g, ' '),
+	}
+
+	console.log(species)
+
+	return { monster, species };
 };
