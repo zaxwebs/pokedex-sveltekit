@@ -42,6 +42,7 @@ export const load = async ({ fetch, params }) => {
 		flavor_text: speciesJson.flavor_text_entries.filter(function(obj) {
 			return obj.language.name === "en";
 		  })[0].flavor_text.replace(/\f/g, ' '),
+		habitat: {...speciesJson.habitat, name: formatName(speciesJson.habitat.name)}
 	}
 
 	console.log(species)

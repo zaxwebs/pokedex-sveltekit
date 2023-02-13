@@ -24,6 +24,7 @@
 		{/each}
 	</div>
 	<p>{data.species.flavor_text}</p>
+
 	<div>
 		<h4 class="font-medium">Height</h4>
 		<span>{convertHeight(data.monster.height)} m</span>
@@ -32,6 +33,12 @@
 		<h4 class="font-medium">Weight</h4>
 		<span>{gramsToKilos(data.monster.weight)} kg</span>
 	</div>
+
+	<div>
+		<h4 class="font-medium">Habitat</h4>
+		<div>{data.species.habitat.name}</div>
+	</div>
+
 	<div class="max-w-lg">
 		<h2 class="font-semibold">Stats</h2>
 		{#each data.monster.stats as statObj}
