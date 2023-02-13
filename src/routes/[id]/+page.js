@@ -1,11 +1,15 @@
 import { getImageUrl, formatName } from "../../helpers/base";
 
 export const load = async ({ fetch, params }) => {
-	const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
-	const json = await response.json();
+	const pokemonPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
+	const speciesPromise = fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.id}`);
+	
 
-	const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.id}`);
+	const [response, speciesResponse] = await Promise.all([pokemonPromise, speciesPromise]);
+
+	const json = await response.json();
 	const speciesJson = await speciesResponse.json()
+
 
 	const formatStatName = (name) => {
 		const statMap = {
