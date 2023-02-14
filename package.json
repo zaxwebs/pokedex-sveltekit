@@ -23,5 +23,9 @@
 		"tailwindcss": "^3.2.6",
 		"vite": "^4.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"fuzzy-search": "^3.2.1",
+		"svelte-infinite-scroll": "^2.0.1"
+	}
 }
