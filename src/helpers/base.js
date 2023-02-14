@@ -20,6 +20,10 @@ export const gramsToKilos = grams => {
 
 export const convertHeight = height => height / 10
 
+export const convertUrlToId = url => {
+	return url.split('/')[6];
+}
+
 export const fetchInParallel = async (endpoints) => {
 	try {
 		const responses = await Promise.all(endpoints.map(endpoint => fetch(endpoint)));

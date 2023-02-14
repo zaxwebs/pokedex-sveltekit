@@ -1,4 +1,4 @@
-import { getImageUrl, formatName } from "../helpers/base";
+import { getImageUrl, formatName, convertUrlToId } from "../helpers/base";
 
 export const load = async ({ fetch, params }) => {
 
@@ -6,7 +6,8 @@ export const load = async ({ fetch, params }) => {
 	const json = await response.json();
 
 	const monsters = json.results.map(monster => {
-		const id = monster.url.split('/').slice(-2)[0];
+		const id = convertUrlToId(monster.url)
+
 		return {
 			id,
 			url: monster.url,
