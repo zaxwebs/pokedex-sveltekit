@@ -5,7 +5,6 @@
 
 	let page = 0;
 	let size = 33;
-	let monsters = [];
 	let searchTerm = '';
 
 	const searcher = new FuzzySearch(data.monsters, ['name'], {
