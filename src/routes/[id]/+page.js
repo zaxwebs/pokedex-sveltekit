@@ -1,14 +1,13 @@
 import { getImageUrl, formatName } from "../../helpers/base";
 
 export const load = async ({ fetch, params }) => {
-	const pokemonPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
-	const speciesPromise = fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.id}`);
-
-
-	const [response, speciesResponse] = await Promise.all([pokemonPromise, speciesPromise]);
-
+	const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
 	const json = await response.json();
-	const speciesJson = await speciesResponse.json()
+
+	const speciesResponse = await fetch(json.species.url);
+
+
+	const speciesJson = await speciesResponse.json();
 
 
 	const formatStatName = (name) => {
@@ -39,18 +38,27 @@ export const load = async ({ fetch, params }) => {
 		})
 	}
 
-	const species = {
-		...speciesJson,
-		genus: speciesJson.genera.filter(function (obj) {
+	function setGenus(genera) {
+		const filtered = genera.filter(function (obj) {
 			return obj.language.name === "en";
-		})[0].genus,
-		flavor_text: speciesJson.flavor_text_entries.filter(function (obj) {
-			return obj.language.name === "en";
-		})[0].flavor_text.replace(/\f/g, ' '),
-		habitat: { ...speciesJson.habitat, name: formatName(speciesJson.habitat.name) }
+		})
+		return filtered.length ? filtered[0].genus : null;
 	}
 
-	console.log(species)
+	function setFlavorText(entries) {
+		if (!entries.length) return null
+		const filtered = entries.filter(function (obj) {
+			return obj.language.name === "en";
+		})
+		return filtered.length ? filtered[0].flavor_text.replace(/\f/g, ' ') : null
+	}
+
+	const species = {
+		...speciesJson,
+		genus: setGenus(speciesJson.genera),
+		flavor_text: setFlavorText(speciesJson.flavor_text_entries),
+		habitat: speciesJson.habitat ? { ...speciesJson.habitat, name: formatName(speciesJson.habitat.name) } : null,
+	}
 
 	return { monster, species };
 };

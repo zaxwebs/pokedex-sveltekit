@@ -6,9 +6,9 @@
 	{#each data.monsters as monster}
 		<article>
 			<div class="flex flex-col items-center ">
-				<img src={monster.image} alt={monster.name} />
+				<img loading="lazy" src={monster.image} alt={monster.name} />
 				<a data-sveltekit-preload-data="tap" href="/{monster.id}">
-					<h3 class="font-semibold">{monster.name}</h3></a
+					<h3 class="font-medium">{monster.name}</h3></a
 				>
 			</div>
 		</article>

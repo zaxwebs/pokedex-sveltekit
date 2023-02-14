@@ -1,8 +1,8 @@
 import { getImageUrl, formatName } from "../helpers/base";
 
 export const load = async ({ fetch, params }) => {
-	
-	const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100');
+
+	const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=9999');
 	const json = await response.json();
 
 	const monsters = json.results.map(monster => {
@@ -17,5 +17,5 @@ export const load = async ({ fetch, params }) => {
 
 	return { monsters };
 
-	
+
 };

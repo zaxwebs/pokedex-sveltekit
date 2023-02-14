@@ -15,6 +15,7 @@
 			<nav class="flex flex-row gap-4 p-4">
 				<a href="/">Home</a>
 				<a href="/about">About</a>
+				<a href="/inspect">Inspect</a>
 			</nav>
 			<div class="px-4">
 				<slot />
