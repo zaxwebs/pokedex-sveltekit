@@ -1,6 +1,6 @@
 <script>
 	export let data;
-	import { formatName, gramsToKilos, convertHeight } from '../../helpers/base';
+	import { formatName, gramsToKilos, convertHeight, fetchInParallel } from '../../helpers/base';
 
 	const calculateStatPerecnt = (stat) => {
 		return (stat / 180) * 100;
@@ -11,6 +11,33 @@
 		if (percent < 50) return 'bg-green-500';
 		if (percent < 75) return 'bg-teal-500';
 		return 'bg-cyan-500';
+	};
+
+	const getEvolutionChain = async () => {
+		try {
+			const evolutionResponse = await fetch(data.species.evolution_chain.url);
+			const evolutionJson = await evolutionResponse.json();
+
+			const speciesUrls = [];
+			const getSpeciesUrlsRecursively = (object) => {
+				if (object.evolves_to) {
+					speciesUrls.push(object.species.url);
+					object.evolves_to.forEach((evolutionData) => {
+						getSpeciesUrlsRecursively(evolutionData);
+					});
+				} else {
+					return;
+				}
+			};
+
+			getSpeciesUrlsRecursively(evolutionJson.chain);
+
+			console.log(speciesUrls);
+			const speciesJson = await fetchInParallel(speciesUrls);
+			console.log(speciesJson);
+		} catch (e) {
+			console.error(e);
+		}
 	};
 </script>
 
@@ -58,7 +85,7 @@
 		</div>
 	</div>
 
-	<div class="max-w-lg">
+	<div class="mb-4">
 		<h2 class="font-semibold">Stats</h2>
 		{#each data.monster.stats as statObj}
 			<div class="flex gap-4 items-center">
@@ -73,4 +100,11 @@
 			</div>
 		{/each}
 	</div>
+
+	<button
+		on:click={getEvolutionChain}
+		type="button"
+		class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 w-full text-center focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
+		>View Evolution Chain</button
+	>
 </div>

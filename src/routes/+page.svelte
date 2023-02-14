@@ -15,8 +15,6 @@
 	$: searchedMonsters = searcher.search(searchTerm);
 	$: displayMonsters = searchTerm ? searchedMonsters : allMonsters;
 	$: paginatedMonsters = displayMonsters.slice(0, size * (page + 1));
-
-	console.log(data.monsters);
 </script>
 
 <form class="mb-4">

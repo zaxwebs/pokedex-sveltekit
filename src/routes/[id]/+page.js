@@ -5,8 +5,6 @@ export const load = async ({ fetch, params }) => {
 	const json = await response.json();
 
 	const speciesResponse = await fetch(json.species.url);
-
-
 	const speciesJson = await speciesResponse.json();
 
 
