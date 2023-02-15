@@ -11,7 +11,7 @@
 
 	let loadingEvolutionChain = false;
 	let evolutionPokemonIds = [];
-	let evolutionPokemons = [];
+	let evolutionMonsters = [];
 
 	const calculateStatPerecnt = (stat) => {
 		return (stat / 180) * 100;
@@ -26,7 +26,6 @@
 
 	const getEvolutionChain = async () => {
 		loadingEvolutionChain = true;
-		await new Promise((resolve) => setTimeout(resolve, 500));
 
 		try {
 			const evolutionResponse = await fetch(data.species.evolution_chain.url);
@@ -67,6 +66,17 @@
 			// };
 
 			// mergeVarietiesRecursively(evolutionJson.chain);
+
+			const monstersResponse = await fetch('/api/pokemon');
+			const monstersJson = await monstersResponse.json();
+
+			let tempEvolutionMonsters = [];
+
+			evolutionPokemonIds.forEach((id) => {
+				tempEvolutionMonsters.push(monstersJson.filter((monster) => monster.id === id)[0]);
+			});
+
+			evolutionMonsters = tempEvolutionMonsters;
 		} catch (e) {
 			console.error(e);
 		}
@@ -133,11 +143,20 @@
 		{/each}
 	</div>
 
-	{#if evolutionPokemonIds.length}
+	{#if evolutionMonsters.length}
 		<h3 class="font-medium">Evolution Chain</h3>
-		{#each evolutionPokemonIds as evolutionPokemonId}
-			<div>{evolutionPokemonId}</div>
-		{/each}
+		<div class="grid grid-cols-3 gap-2 mb-4">
+			{#each evolutionMonsters as monster}
+				<article>
+					<div class="flex flex-col items-center ">
+						<img loading="lazy" src={monster.image} alt={monster.name} />
+						<a data-sveltekit-preload-data="tap" href="/{monster.id}">
+							<h3 class="font-medium">{monster.name}</h3></a
+						>
+					</div>
+				</article>
+			{/each}
+		</div>
 	{:else if loadingEvolutionChain}
 		<button
 			disabled
