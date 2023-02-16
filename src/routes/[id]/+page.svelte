@@ -32,7 +32,6 @@
 
 	const fetchMonsters = async () => {
 		loadingAllMonsters = true;
-		await new Promise((r) => setTimeout(() => r(), 2000));
 		const response = await fetch('/api/pokemon');
 		const json = await response.json();
 		loadingAllMonsters = false;
