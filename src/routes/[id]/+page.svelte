@@ -135,7 +135,7 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between mb-4">
+	<div class="flex justify-between mb-8">
 		<div>
 			<h4 class="font-medium">Habitat</h4>
 			{#if data.species.habitat}
@@ -150,7 +150,7 @@
 		</div>
 	</div>
 
-	<div class="mb-4">
+	<div class="mb-8">
 		<h2 class="font-semibold">Stats</h2>
 		{#each data.monster.stats as statObj}
 			<div class="flex gap-4 items-center">
@@ -167,7 +167,7 @@
 	</div>
 
 	{#if evolutionMonsters.length}
-		<h3 class="font-medium">Evolution Chain</h3>
+		<h3 class="font-medium border-b border-gray-200 pb-2">Evolution Chain</h3>
 		<div class="grid grid-cols-3 gap-2 mb-4">
 			{#each evolutionMonsters as { id, name, image }}
 				<MonsterCard {id} {name} {image} />
@@ -209,7 +209,7 @@
 
 	{#if data.species.varieties.length > 1}
 		{#if allMonsters.length && showVarieties}
-			<h3 class="font-medium">All {data.monster.name} Variants</h3>
+			<h3 class="font-medium border-b border-gray-200 pb-2">All Variants</h3>
 			<div class="grid grid-cols-3 gap-2 mb-4">
 				{#each data.species.varieties as variety}
 					<MonsterCard
@@ -254,6 +254,11 @@
 				{:else}
 					View All Variants
 				{/if}
+				<span
+					class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-white bg-red-500 rounded-full"
+				>
+					{data.species.varieties.length}
+				</span>
 			</button>
 		{/if}
 	{/if}
