@@ -1,4 +1,5 @@
 <script>
+	import MonsterCard from '$components/MonsterCard.svelte';
 	import {
 		formatName,
 		gramsToKilos,
@@ -146,15 +147,8 @@
 	{#if evolutionMonsters.length}
 		<h3 class="font-medium">Evolution Chain</h3>
 		<div class="grid grid-cols-3 gap-2 mb-4">
-			{#each evolutionMonsters as monster}
-				<article>
-					<div class="flex flex-col items-center ">
-						<img loading="lazy" src={monster.image} alt={monster.name} />
-						<a data-sveltekit-preload-data="tap" href="/{monster.id}">
-							<h3 class="font-medium">{monster.name}</h3></a
-						>
-					</div>
-				</article>
+			{#each evolutionMonsters as { id, name, image }}
+				<MonsterCard {id} {name} {image} />
 			{/each}
 		</div>
 	{:else if loadingEvolutionChain}

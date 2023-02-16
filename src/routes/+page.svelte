@@ -1,6 +1,7 @@
 <script>
 	import InfiniteScroll from 'svelte-infinite-scroll';
 	import FuzzySearch from 'fuzzy-search';
+	import MonsterCard from '$components/MonsterCard.svelte';
 	export let data;
 
 	let page = 0;
@@ -53,15 +54,8 @@
 </form>
 
 <div class="grid grid-cols-3 gap-2">
-	{#each paginatedMonsters as monster}
-		<article>
-			<div class="flex flex-col items-center ">
-				<img loading="lazy" src={monster.image} alt={monster.name} />
-				<a data-sveltekit-preload-data="tap" href="/{monster.id}">
-					<h3 class="font-medium">{monster.name}</h3></a
-				>
-			</div>
-		</article>
+	{#each paginatedMonsters as { id, name, image }}
+		<MonsterCard {id} {name} {image} />
 	{/each}
 	<InfiniteScroll threshold={200} window={true} on:loadMore={() => page++} />
 </div>
