@@ -155,7 +155,7 @@
 		<button
 			disabled
 			type="button"
-			class="py-2.5 px-5 mr-2 text-sm font-medium w-full text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center justify-center"
+			class="py-2.5 px-5 mr-2 text-sm font-medium w-full text-gray-900 bg-white rounded border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center justify-center"
 		>
 			<svg
 				aria-hidden="true"

@@ -4,6 +4,8 @@ export const getImageUrl = (id) => {
 	// IDs that are missing images
 	const noImageIds = [10129, 10146, 10128, 10153, 10160, 10154, 10159, 10158, 10187, 10181, 10183, 10182, 10192, 10270, 10269, 10265, 10264, 10268, 10267, 10271, 10266];
 
+	if (noImageIds.includes(Number(id))) return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png`
+
 	return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 }
 
