@@ -109,7 +109,7 @@
 <div>
 	<div class="flex flex-col items-center mb-4">
 		<img src={data.monster.image} alt={data.monster.name} />
-		<h1 class="font-semibold text-4xl mb-4">{data.monster.name}</h1>
+		<h1 class="font-medium text-4xl mb-4">{data.monster.name}</h1>
 		{#if data.species.genus}
 			<div class="mb-2">{data.species.genus}</div>
 		{/if}
@@ -151,7 +151,7 @@
 	</div>
 
 	<div class="mb-8">
-		<h2 class="font-semibold">Stats</h2>
+		<h2 class="font-medium border-b border-gray-200 pb-2 mb-2">Stats</h2>
 		{#each data.monster.stats as statObj}
 			<div class="flex gap-4 items-center">
 				<h3 style="flex: 0.4;">{statObj.stat.name}</h3>
@@ -167,7 +167,7 @@
 	</div>
 
 	{#if evolutionMonsters.length}
-		<h3 class="font-medium border-b border-gray-200 pb-2">Evolution Chain</h3>
+		<h3 class="font-medium border-b border-gray-200 pb-2 mb-2">Evolution Chain</h3>
 		<div class="grid grid-cols-3 gap-2 mb-4">
 			{#each evolutionMonsters as { id, name, image }}
 				<MonsterCard {id} {name} {image} />
@@ -209,7 +209,7 @@
 
 	{#if data.species.varieties.length > 1}
 		{#if allMonsters.length && showVarieties}
-			<h3 class="font-medium border-b border-gray-200 pb-2">All Variants</h3>
+			<h3 class="font-medium border-b border-gray-200 pb-2 mb-2">All Variants</h3>
 			<div class="grid grid-cols-3 gap-2 mb-4">
 				{#each data.species.varieties as variety}
 					<MonsterCard
@@ -255,7 +255,7 @@
 					View All Variants
 				{/if}
 				<span
-					class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-white bg-red-500 rounded-full"
+					class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-medium text-white bg-red-500 rounded-full"
 				>
 					{data.species.varieties.length}
 				</span>
